@@ -6,8 +6,8 @@
     <property name="offspringsPerGeneration">25</property>
     <property name="crossoverRate">0.95</property>
   </module>
-<!--  <module class="at.uibk.dps.dsB.ex0.modules.MyFirstProblemModule"/>-->
-  <module class="at.uibk.dps.dsB.ex0.modules.SalesmanModule"/>
+  <module class="at.uibk.dps.dsB.ex0.modules.MyFirstProblemModule"/>
+<!--  <module class="at.uibk.dps.dsB.ex0.modules.SalesmanModule"/>-->
   <module class="org.opt4j.viewer.ViewerModule">
     <property name="closeEvent">STOP</property>
     <property name="closeOnStop">false</property>

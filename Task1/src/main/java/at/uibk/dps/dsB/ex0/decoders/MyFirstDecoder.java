@@ -1,5 +1,6 @@
 package at.uibk.dps.dsB.ex0.decoders;
 
+import edu.uci.ics.jung.graph.util.Pair;
 import org.opt4j.core.Genotype;
 import org.opt4j.core.genotype.SelectGenotype;
 import org.opt4j.core.problem.Decoder;
@@ -11,14 +12,18 @@ import org.opt4j.core.problem.Decoder;
  * @author Fedor Smirnov
  *
  */
-public class MyFirstDecoder implements Decoder<SelectGenotype<Character>, String> {
+public class MyFirstDecoder implements Decoder<SelectGenotype<Integer>, Pair<Integer>> {
 
 	@Override
-	public String decode(SelectGenotype<Character> genotype) {
-		String phenotype = "";
+	public Pair<Integer> decode(SelectGenotype<Integer> genotype) {
+		Integer total = 0;
+		Integer numberCoins = 0;
 		for (int i = 0; i < genotype.size(); i++) {
-			phenotype += genotype.getValue(i);
+			total += genotype.getValue(i);
+			if (genotype.getValue(i) != 0) {
+				numberCoins++;
+			}
 		}
-		return phenotype;
+		return new Pair<>(total,numberCoins);
 	}
 }

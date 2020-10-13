@@ -13,15 +13,15 @@ import java.util.Random;
  * @author Fedor Smirnov
  *
  */
-public class MyFirstCreator implements Creator<SelectGenotype<Character>> {
-	Character[] ALPHABET = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
-			'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ' };
+public class MyFirstCreator implements Creator<SelectGenotype<Integer>> {
+
+	Integer[] Coins = { 200, 100, 50, 20, 10, 5, 2, 1, 0};
 	Random random = new Random();
 
 	@Override
-	public SelectGenotype<Character> create() {
-		SelectGenotype<Character> genotype = new SelectGenotype<Character>(ALPHABET);
-		genotype.init(random, 11);
+	public SelectGenotype<Integer> create() {
+		SelectGenotype<Integer> genotype = new SelectGenotype<>(Coins);
+		genotype.init(random, 20);
 		return genotype;
 	}
 

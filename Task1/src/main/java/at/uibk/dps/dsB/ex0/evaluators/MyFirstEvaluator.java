@@ -1,5 +1,6 @@
 package at.uibk.dps.dsB.ex0.evaluators;
 
+import edu.uci.ics.jung.graph.util.Pair;
 import org.opt4j.core.Objective;
 import org.opt4j.core.Objective.Sign;
 import org.opt4j.core.Objectives;
@@ -13,18 +14,20 @@ import org.opt4j.core.problem.Evaluator;
  * @author Fedor Smirnov
  *
  */
-public class MyFirstEvaluator implements Evaluator<String> {
+public class MyFirstEvaluator implements Evaluator<Pair<Integer>> {
 
-	protected final Objective myObjective = new Objective("Objective to maximize", Sign.MAX);
+	protected final Objective myObjective = new Objective("Objective to maximize", Sign.MIN);
 
 	@Override
-	public Objectives evaluate(String phenotype) {
-		int value = 0;
-		for (int i = 0; i < phenotype.length(); i++) {
-			value += (phenotype.charAt(i) == "HELLO WORLD".charAt(i)) ? 1 : 0;
-		}
+	public Objectives evaluate(Pair<Integer> value) {
+		var totalValue = value.getFirst();
+		var dif = totalValue - 253;
+		dif = dif > 0 ? dif : - dif;
+
+		//penalty for more coins
+		dif += value.getSecond() * 1;
 		Objectives objectives = new Objectives();
-		objectives.add("objective", Sign.MAX, value);
+		objectives.add("objective", Sign.MIN, dif);
 		return objectives;
 	}
 
