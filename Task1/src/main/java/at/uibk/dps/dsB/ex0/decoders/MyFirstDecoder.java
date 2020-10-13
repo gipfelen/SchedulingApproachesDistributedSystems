@@ -1,6 +1,7 @@
 package at.uibk.dps.dsB.ex0.decoders;
 
 import org.opt4j.core.Genotype;
+import org.opt4j.core.genotype.SelectGenotype;
 import org.opt4j.core.problem.Decoder;
 
 /**
@@ -10,12 +11,14 @@ import org.opt4j.core.problem.Decoder;
  * @author Fedor Smirnov
  *
  */
-public class MyFirstDecoder implements Decoder<Genotype, Object> {
+public class MyFirstDecoder implements Decoder<SelectGenotype<Character>, String> {
 
 	@Override
-	public Object decode(Genotype genotype) {
-		// TODO Implement a method which transforms a given genotype into the phenotype,
-		// i.e., a representation which can be processed by the evalutor.
-		throw new IllegalArgumentException("Decoding not yet implemented.");
+	public String decode(SelectGenotype<Character> genotype) {
+		String phenotype = "";
+		for (int i = 0; i < genotype.size(); i++) {
+			phenotype += genotype.getValue(i);
+		}
+		return phenotype;
 	}
 }

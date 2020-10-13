@@ -13,17 +13,19 @@ import org.opt4j.core.problem.Evaluator;
  * @author Fedor Smirnov
  *
  */
-public class MyFirstEvaluator implements Evaluator<Object> {
+public class MyFirstEvaluator implements Evaluator<String> {
 
 	protected final Objective myObjective = new Objective("Objective to maximize", Sign.MAX);
 
 	@Override
-	public Objectives evaluate(Object phenotype) {
-		// No need to do anything in this method
-		double fitness = calculatePhenotypeFitness(phenotype);
-		Objectives result = new Objectives();
-		result.add(myObjective, fitness);
-		return result;
+	public Objectives evaluate(String phenotype) {
+		int value = 0;
+		for (int i = 0; i < phenotype.length(); i++) {
+			value += (phenotype.charAt(i) == "HELLO WORLD".charAt(i)) ? 1 : 0;
+		}
+		Objectives objectives = new Objectives();
+		objectives.add("objective", Sign.MAX, value);
+		return objectives;
 	}
 
 	/**
