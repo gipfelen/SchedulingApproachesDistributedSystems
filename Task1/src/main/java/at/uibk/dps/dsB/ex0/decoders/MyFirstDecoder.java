@@ -17,13 +17,13 @@ public class MyFirstDecoder implements Decoder<SelectGenotype<Integer>, Pair<Int
 	@Override
 	public Pair<Integer> decode(SelectGenotype<Integer> genotype) {
 		Integer total = 0;
-		Integer numberCoins = 0;
+		Integer bankNotesCount = 0;
 		for (int i = 0; i < genotype.size(); i++) {
 			total += genotype.getValue(i);
 			if (genotype.getValue(i) != 0) {
-				numberCoins++;
+				bankNotesCount++;
 			}
 		}
-		return new Pair<>(total,numberCoins);
+		return new Pair<>(total,bankNotesCount);
 	}
 }

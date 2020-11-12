@@ -15,13 +15,13 @@ import java.util.Random;
  */
 public class MyFirstCreator implements Creator<SelectGenotype<Integer>> {
 
-	Integer[] Coins = { 200, 100, 50, 20, 10, 5, 2, 1, 0};
+	Integer[] BankNote = {500, 200, 100, 50, 20, 10, 5, 0};
 	Random random = new Random();
 
 	@Override
 	public SelectGenotype<Integer> create() {
-		SelectGenotype<Integer> genotype = new SelectGenotype<>(Coins);
-		genotype.init(random, 20);
+		SelectGenotype<Integer> genotype = new SelectGenotype<>(BankNote);
+		genotype.init(random, 10);
 		return genotype;
 	}
 

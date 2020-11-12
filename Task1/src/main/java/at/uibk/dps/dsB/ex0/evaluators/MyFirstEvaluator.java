@@ -18,14 +18,15 @@ public class MyFirstEvaluator implements Evaluator<Pair<Integer>> {
 
 	protected final Objective myObjective = new Objective("Objective to maximize", Sign.MIN);
 
+	private int goal= 1790;
 	@Override
 	public Objectives evaluate(Pair<Integer> value) {
 		var totalValue = value.getFirst();
-		var dif = totalValue - 253;
+		var dif = totalValue - goal;
 		dif = dif > 0 ? dif : - dif;
 
-		//penalty for more coins
-		dif += value.getSecond() * 1;
+		//penalty for more notes
+		dif += value.getSecond();
 		Objectives objectives = new Objectives();
 		objectives.add("objective", Sign.MIN, dif);
 		return objectives;
