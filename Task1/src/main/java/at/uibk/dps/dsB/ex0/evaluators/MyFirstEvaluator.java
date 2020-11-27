@@ -1,5 +1,7 @@
 package at.uibk.dps.dsB.ex0.evaluators;
 
+import at.uibk.dps.dsB.ex0.MyFirstProblem;
+import com.google.inject.Inject;
 import edu.uci.ics.jung.graph.util.Pair;
 import org.opt4j.core.Objective;
 import org.opt4j.core.Objective.Sign;
@@ -18,15 +20,20 @@ public class MyFirstEvaluator implements Evaluator<Pair<Integer>> {
 
 	protected final Objective myObjective = new Objective("Objective to maximize", Sign.MIN);
 
-	private int goal= 1790;
+	protected final MyFirstProblem problem;
+	@Inject
+	public MyFirstEvaluator(MyFirstProblem problem) {
+		this.problem = problem;
+	}
+
 	@Override
 	public Objectives evaluate(Pair<Integer> value) {
 		var totalValue = value.getFirst();
-		var dif = totalValue - goal;
+		var dif = totalValue - problem.getTargetValue();
 		dif = dif > 0 ? dif : - dif;
 
-		//penalty for more notes
-		dif += value.getSecond();
+		//penalty for more coins
+		dif += value.getSecond() * problem.getPenaltyPerCoinUsed();
 		Objectives objectives = new Objectives();
 		objectives.add("objective", Sign.MIN, dif);
 		return objectives;
