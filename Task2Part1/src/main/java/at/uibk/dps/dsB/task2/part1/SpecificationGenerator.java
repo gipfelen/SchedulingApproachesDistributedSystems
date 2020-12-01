@@ -35,12 +35,12 @@ public final class SpecificationGenerator {
 	 */
 	private static Application<Task, Dependency> generateApplication() {
 		var application = new Application<>();
-		var t0 = new Task("t0");
-		var t1 = new Task("t1");
-		var t2 = new Task("t2");
-		var t3 = new Task("t3");
-		var t4 = new Task("t4");
-		var t5 = new Task("t5");
+		var t0 = new Task("Capturing the video");
+		var t1 = new Task("Pattern Recognition");
+		var t2 = new Task("Data consolidation");
+		var t3 = new Task("Prediction");
+		var t4 = new Task("Recommendation owner");
+		var t5 = new Task("Recommendation customer");
 
 		application.addVertex(t0);
 		application.addVertex(t1);
@@ -80,14 +80,14 @@ public final class SpecificationGenerator {
 	 */
 	private static Architecture<Resource, Link> generateArchitecture() {
 		Architecture<Resource, Link> architecture = new Architecture<Resource, Link>();
-		var r0 = new Resource("r0");
-		var r1 = new Resource("r1");
-		var r2 = new Resource("r2");
-		var r3 = new Resource("r3");
-		var r4 = new Resource("r4");
-		var r5 = new Resource("r5");
-		var r6 = new Resource("r6");
-		var r7 = new Resource("r7");
+		var r0 = new Resource("Camera");
+		var r1 = new Resource("Smart camera");
+		var r2 = new Resource("Router");
+		var r3 = new Resource("User device 0");
+		var r4 = new Resource("User device 1");
+		var r5 = new Resource("User device 2");
+		var r6 = new Resource("Cloud resource 0");
+		var r7 = new Resource("Cloud resource 1");
 
 		architecture.addVertex(r0);
 		architecture.addVertex(r1);
@@ -102,24 +102,24 @@ public final class SpecificationGenerator {
 
 
 		//ETHERNET
-		architecture.addEdge(new Link("l0"), r0, r2);
-		architecture.addEdge(new Link("l1"), r1, r2);
+		architecture.addEdge(new Link("Ethernet 0"), r0, r2);
+		architecture.addEdge(new Link("Ethernet 1"), r1, r2);
 
 		//WIFI
-		architecture.addEdge(new Link("l2"), r0, r2);
-		architecture.addEdge(new Link("l3"), r1, r2);
-		architecture.addEdge(new Link("l4"), r3, r2);
-		architecture.addEdge(new Link("l5"), r4, r2);
-		architecture.addEdge(new Link("l6"), r5, r2);
+		architecture.addEdge(new Link("Wifi 0"), r0, r2);
+		architecture.addEdge(new Link("Wifi 1"), r1, r2);
+		architecture.addEdge(new Link("Wifi 2"), r3, r2);
+		architecture.addEdge(new Link("Wifi 3"), r4, r2);
+		architecture.addEdge(new Link("Wifi 4"), r5, r2);
 
 		//BLUETOOTH
-		architecture.addEdge(new Link("l7"), r3, r4);
-		architecture.addEdge(new Link("l8"), r3, r5);
-		architecture.addEdge(new Link("l9"), r4, r5);
+		architecture.addEdge(new Link("Bluetooth 0"), r3, r4);
+		architecture.addEdge(new Link("Bluetooth 1"), r3, r5);
+		architecture.addEdge(new Link("Bluetooth 2"), r4, r5);
 
 		//INTERNET
-		architecture.addEdge(new Link("l10"), r6, r2);
-		architecture.addEdge(new Link("l11"), r7, r2);
+		architecture.addEdge(new Link("Internet 0"), r6, r2);
+		architecture.addEdge(new Link("Internet 1"), r7, r2);
 
 		return architecture;
 	}
@@ -136,18 +136,18 @@ public final class SpecificationGenerator {
 		var mappings = new Mappings<>();
 
 		//The video can be captured by the camera and/or by the smart camera.
-		var m0 = new Mapping<Task, Resource>("m0", appl.getVertex("t0"), arch.getVertex("r0"));
-		var m1 = new Mapping<Task, Resource>("m1", appl.getVertex("t0"), arch.getVertex("r1"));
+		var m0 = new Mapping<Task, Resource>("m0", appl.getVertex("Capturing the video"), arch.getVertex("Camera"));
+		var m1 = new Mapping<Task, Resource>("m1", appl.getVertex("Capturing the video"), arch.getVertex("Smart camera"));
 
 		//The pattern recognition can be done in the cloud...
-		var m2 = new Mapping<Task, Resource>("m2", appl.getVertex("t1"), arch.getVertex("r6"));
-		var m3 = new Mapping<Task, Resource>("m3", appl.getVertex("t1"), arch.getVertex("r7"));
+		var m2 = new Mapping<Task, Resource>("m2", appl.getVertex("Pattern Recognition"), arch.getVertex("Cloud resource 0"));
+		var m3 = new Mapping<Task, Resource>("m3", appl.getVertex("Pattern Recognition"), arch.getVertex("Cloud resource 1"));
 
 		//on the fog resource (router)...
-		var m4 = new Mapping<Task, Resource>("m4", appl.getVertex("t1"), arch.getVertex("r2"));
+		var m4 = new Mapping<Task, Resource>("m4", appl.getVertex("Pattern Recognition"), arch.getVertex("Router"));
 
 		//or directly on the smart camera.
-		var m5 = new Mapping<Task, Resource>("m5", appl.getVertex("t1"), arch.getVertex("r1"));
+		var m5 = new Mapping<Task, Resource>("m5", appl.getVertex("Pattern Recognition"), arch.getVertex("Smart camera"));
 
 		mappings.add(m0);
 		mappings.add(m1);

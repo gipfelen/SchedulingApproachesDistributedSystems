@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <specification xsi:schemaLocation="http://opendse.sourceforge.net http://opendse.sourceforge.net/schema.xsd" xmlns="http://opendse.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <architecture>
-    <resource id="r2"/>
-    <resource id="r3"/>
-    <resource id="r4"/>
-    <resource id="r5"/>
-    <resource id="r6"/>
-    <resource id="r7"/>
-    <resource id="r0"/>
-    <resource id="r1"/>
-    <link id="l0" source="r0" destination="r2" orientation="UNDIRECTED"/>
-    <link id="l1" source="r1" destination="r2" orientation="UNDIRECTED"/>
-    <link id="l2" source="r0" destination="r2" orientation="UNDIRECTED"/>
-    <link id="l3" source="r1" destination="r2" orientation="UNDIRECTED"/>
-    <link id="l4" source="r3" destination="r2" orientation="UNDIRECTED"/>
-    <link id="l5" source="r4" destination="r2" orientation="UNDIRECTED"/>
-    <link id="l6" source="r5" destination="r2" orientation="UNDIRECTED"/>
-    <link id="l10" source="r6" destination="r2" orientation="UNDIRECTED"/>
-    <link id="l7" source="r3" destination="r4" orientation="UNDIRECTED"/>
-    <link id="l8" source="r3" destination="r5" orientation="UNDIRECTED"/>
-    <link id="l9" source="r4" destination="r5" orientation="UNDIRECTED"/>
-    <link id="l11" source="r7" destination="r2" orientation="UNDIRECTED"/>
+    <resource id="Smart camera"/>
+    <resource id="User device 0"/>
+    <resource id="User device 1"/>
+    <resource id="User device 2"/>
+    <resource id="Router"/>
+    <resource id="Cloud resource 0"/>
+    <resource id="Cloud resource 1"/>
+    <resource id="Camera"/>
+    <link id="Bluetooth 0" source="User device 0" destination="User device 1" orientation="UNDIRECTED"/>
+    <link id="Bluetooth 1" source="User device 0" destination="User device 2" orientation="UNDIRECTED"/>
+    <link id="Ethernet 0" source="Camera" destination="Router" orientation="UNDIRECTED"/>
+    <link id="Wifi 4" source="User device 2" destination="Router" orientation="UNDIRECTED"/>
+    <link id="Wifi 3" source="User device 1" destination="Router" orientation="UNDIRECTED"/>
+    <link id="Wifi 0" source="Camera" destination="Router" orientation="UNDIRECTED"/>
+    <link id="Wifi 2" source="User device 0" destination="Router" orientation="UNDIRECTED"/>
+    <link id="Ethernet 1" source="Smart camera" destination="Router" orientation="UNDIRECTED"/>
+    <link id="Wifi 1" source="Smart camera" destination="Router" orientation="UNDIRECTED"/>
+    <link id="Internet 0" source="Cloud resource 0" destination="Router" orientation="UNDIRECTED"/>
+    <link id="Bluetooth 2" source="User device 1" destination="User device 2" orientation="UNDIRECTED"/>
+    <link id="Internet 1" source="Cloud resource 1" destination="Router" orientation="UNDIRECTED"/>
   </architecture>
   <application>
-    <task id="t4"/>
-    <task id="t5"/>
-    <task id="t0"/>
-    <task id="t1"/>
-    <task id="t2"/>
-    <task id="t3"/>
+    <task id="Recommendation customer"/>
+    <task id="Pattern Recognition"/>
+    <task id="Data consolidation"/>
+    <task id="Recommendation owner"/>
+    <task id="Prediction"/>
+    <task id="Capturing the video"/>
     <communication id="c3"/>
     <communication id="c4"/>
     <communication id="c0"/>
     <communication id="c1"/>
     <communication id="c2"/>
-    <dependency id="d4" source="c1" destination="t2" orientation="DIRECTED"/>
-    <dependency id="d5" source="c2" destination="t3" orientation="DIRECTED"/>
-    <dependency id="d6" source="t2" destination="c3" orientation="DIRECTED"/>
-    <dependency id="d10" source="c4" destination="t4" orientation="DIRECTED"/>
-    <dependency id="d7" source="t3" destination="c4" orientation="DIRECTED"/>
-    <dependency id="d8" source="c3" destination="t4" orientation="DIRECTED"/>
-    <dependency id="d9" source="c3" destination="t5" orientation="DIRECTED"/>
-    <dependency id="d11" source="c4" destination="t5" orientation="DIRECTED"/>
-    <dependency id="d0" source="t0" destination="c0" orientation="DIRECTED"/>
-    <dependency id="d1" source="c0" destination="t1" orientation="DIRECTED"/>
-    <dependency id="d2" source="t1" destination="c1" orientation="DIRECTED"/>
-    <dependency id="d3" source="t1" destination="c2" orientation="DIRECTED"/>
+    <dependency id="d4" source="c1" destination="Data consolidation" orientation="DIRECTED"/>
+    <dependency id="d5" source="c2" destination="Prediction" orientation="DIRECTED"/>
+    <dependency id="d6" source="Data consolidation" destination="c3" orientation="DIRECTED"/>
+    <dependency id="d10" source="c4" destination="Recommendation owner" orientation="DIRECTED"/>
+    <dependency id="d7" source="Prediction" destination="c4" orientation="DIRECTED"/>
+    <dependency id="d8" source="c3" destination="Recommendation owner" orientation="DIRECTED"/>
+    <dependency id="d9" source="c3" destination="Recommendation customer" orientation="DIRECTED"/>
+    <dependency id="d11" source="c4" destination="Recommendation customer" orientation="DIRECTED"/>
+    <dependency id="d0" source="Capturing the video" destination="c0" orientation="DIRECTED"/>
+    <dependency id="d1" source="c0" destination="Pattern Recognition" orientation="DIRECTED"/>
+    <dependency id="d2" source="Pattern Recognition" destination="c1" orientation="DIRECTED"/>
+    <dependency id="d3" source="Pattern Recognition" destination="c2" orientation="DIRECTED"/>
     <functions>
-      <function anchor="t4">
+      <function anchor="Recommendation customer">
         <attributes>
           <attribute name="ID" type="STRING">func0</attribute>
         </attributes>
@@ -55,123 +55,123 @@
     </functions>
   </application>
   <mappings>
-    <mapping id="m0" source="t0" target="r0"/>
-    <mapping id="m1" source="t0" target="r1"/>
-    <mapping id="m2" source="t1" target="r6"/>
-    <mapping id="m3" source="t1" target="r7"/>
-    <mapping id="m4" source="t1" target="r2"/>
-    <mapping id="m5" source="t1" target="r1"/>
+    <mapping id="m0" source="Capturing the video" target="Camera"/>
+    <mapping id="m1" source="Capturing the video" target="Smart camera"/>
+    <mapping id="m2" source="Pattern Recognition" target="Cloud resource 0"/>
+    <mapping id="m3" source="Pattern Recognition" target="Cloud resource 1"/>
+    <mapping id="m4" source="Pattern Recognition" target="Router"/>
+    <mapping id="m5" source="Pattern Recognition" target="Smart camera"/>
   </mappings>
   <routings>
     <routing source="c3">
-      <resource id="r2"/>
-      <resource id="r3"/>
-      <resource id="r4"/>
-      <resource id="r5"/>
-      <resource id="r6"/>
-      <resource id="r7"/>
-      <resource id="r0"/>
-      <resource id="r1"/>
-      <link id="l0" source="r0" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l1" source="r1" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l2" source="r0" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l3" source="r1" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l4" source="r3" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l5" source="r4" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l6" source="r5" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l10" source="r6" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l7" source="r3" destination="r4" orientation="UNDIRECTED"/>
-      <link id="l8" source="r3" destination="r5" orientation="UNDIRECTED"/>
-      <link id="l9" source="r4" destination="r5" orientation="UNDIRECTED"/>
-      <link id="l11" source="r7" destination="r2" orientation="UNDIRECTED"/>
+      <resource id="Smart camera"/>
+      <resource id="User device 0"/>
+      <resource id="User device 1"/>
+      <resource id="User device 2"/>
+      <resource id="Router"/>
+      <resource id="Cloud resource 0"/>
+      <resource id="Cloud resource 1"/>
+      <resource id="Camera"/>
+      <link id="Bluetooth 0" source="User device 0" destination="User device 1" orientation="UNDIRECTED"/>
+      <link id="Bluetooth 1" source="User device 0" destination="User device 2" orientation="UNDIRECTED"/>
+      <link id="Ethernet 0" source="Camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 4" source="User device 2" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 3" source="User device 1" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 0" source="Camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 2" source="User device 0" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Ethernet 1" source="Smart camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 1" source="Smart camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Internet 0" source="Cloud resource 0" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Bluetooth 2" source="User device 1" destination="User device 2" orientation="UNDIRECTED"/>
+      <link id="Internet 1" source="Cloud resource 1" destination="Router" orientation="UNDIRECTED"/>
     </routing>
     <routing source="c4">
-      <resource id="r2"/>
-      <resource id="r3"/>
-      <resource id="r4"/>
-      <resource id="r5"/>
-      <resource id="r6"/>
-      <resource id="r7"/>
-      <resource id="r0"/>
-      <resource id="r1"/>
-      <link id="l0" source="r0" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l1" source="r1" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l2" source="r0" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l3" source="r1" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l4" source="r3" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l5" source="r4" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l6" source="r5" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l10" source="r6" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l7" source="r3" destination="r4" orientation="UNDIRECTED"/>
-      <link id="l8" source="r3" destination="r5" orientation="UNDIRECTED"/>
-      <link id="l9" source="r4" destination="r5" orientation="UNDIRECTED"/>
-      <link id="l11" source="r7" destination="r2" orientation="UNDIRECTED"/>
+      <resource id="Smart camera"/>
+      <resource id="User device 0"/>
+      <resource id="User device 1"/>
+      <resource id="User device 2"/>
+      <resource id="Router"/>
+      <resource id="Cloud resource 0"/>
+      <resource id="Cloud resource 1"/>
+      <resource id="Camera"/>
+      <link id="Bluetooth 0" source="User device 0" destination="User device 1" orientation="UNDIRECTED"/>
+      <link id="Bluetooth 1" source="User device 0" destination="User device 2" orientation="UNDIRECTED"/>
+      <link id="Ethernet 0" source="Camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 4" source="User device 2" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 3" source="User device 1" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 0" source="Camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 2" source="User device 0" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Ethernet 1" source="Smart camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 1" source="Smart camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Internet 0" source="Cloud resource 0" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Bluetooth 2" source="User device 1" destination="User device 2" orientation="UNDIRECTED"/>
+      <link id="Internet 1" source="Cloud resource 1" destination="Router" orientation="UNDIRECTED"/>
     </routing>
     <routing source="c0">
-      <resource id="r2"/>
-      <resource id="r3"/>
-      <resource id="r4"/>
-      <resource id="r5"/>
-      <resource id="r6"/>
-      <resource id="r7"/>
-      <resource id="r0"/>
-      <resource id="r1"/>
-      <link id="l0" source="r0" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l1" source="r1" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l2" source="r0" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l3" source="r1" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l4" source="r3" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l5" source="r4" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l6" source="r5" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l10" source="r6" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l7" source="r3" destination="r4" orientation="UNDIRECTED"/>
-      <link id="l8" source="r3" destination="r5" orientation="UNDIRECTED"/>
-      <link id="l9" source="r4" destination="r5" orientation="UNDIRECTED"/>
-      <link id="l11" source="r7" destination="r2" orientation="UNDIRECTED"/>
+      <resource id="Smart camera"/>
+      <resource id="User device 0"/>
+      <resource id="User device 1"/>
+      <resource id="User device 2"/>
+      <resource id="Router"/>
+      <resource id="Cloud resource 0"/>
+      <resource id="Cloud resource 1"/>
+      <resource id="Camera"/>
+      <link id="Bluetooth 0" source="User device 0" destination="User device 1" orientation="UNDIRECTED"/>
+      <link id="Bluetooth 1" source="User device 0" destination="User device 2" orientation="UNDIRECTED"/>
+      <link id="Ethernet 0" source="Camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 4" source="User device 2" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 3" source="User device 1" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 0" source="Camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 2" source="User device 0" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Ethernet 1" source="Smart camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 1" source="Smart camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Internet 0" source="Cloud resource 0" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Bluetooth 2" source="User device 1" destination="User device 2" orientation="UNDIRECTED"/>
+      <link id="Internet 1" source="Cloud resource 1" destination="Router" orientation="UNDIRECTED"/>
     </routing>
     <routing source="c1">
-      <resource id="r2"/>
-      <resource id="r3"/>
-      <resource id="r4"/>
-      <resource id="r5"/>
-      <resource id="r6"/>
-      <resource id="r7"/>
-      <resource id="r0"/>
-      <resource id="r1"/>
-      <link id="l0" source="r0" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l1" source="r1" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l2" source="r0" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l3" source="r1" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l4" source="r3" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l5" source="r4" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l6" source="r5" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l10" source="r6" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l7" source="r3" destination="r4" orientation="UNDIRECTED"/>
-      <link id="l8" source="r3" destination="r5" orientation="UNDIRECTED"/>
-      <link id="l9" source="r4" destination="r5" orientation="UNDIRECTED"/>
-      <link id="l11" source="r7" destination="r2" orientation="UNDIRECTED"/>
+      <resource id="Smart camera"/>
+      <resource id="User device 0"/>
+      <resource id="User device 1"/>
+      <resource id="User device 2"/>
+      <resource id="Router"/>
+      <resource id="Cloud resource 0"/>
+      <resource id="Cloud resource 1"/>
+      <resource id="Camera"/>
+      <link id="Bluetooth 0" source="User device 0" destination="User device 1" orientation="UNDIRECTED"/>
+      <link id="Bluetooth 1" source="User device 0" destination="User device 2" orientation="UNDIRECTED"/>
+      <link id="Ethernet 0" source="Camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 4" source="User device 2" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 3" source="User device 1" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 0" source="Camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 2" source="User device 0" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Ethernet 1" source="Smart camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 1" source="Smart camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Internet 0" source="Cloud resource 0" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Bluetooth 2" source="User device 1" destination="User device 2" orientation="UNDIRECTED"/>
+      <link id="Internet 1" source="Cloud resource 1" destination="Router" orientation="UNDIRECTED"/>
     </routing>
     <routing source="c2">
-      <resource id="r2"/>
-      <resource id="r3"/>
-      <resource id="r4"/>
-      <resource id="r5"/>
-      <resource id="r6"/>
-      <resource id="r7"/>
-      <resource id="r0"/>
-      <resource id="r1"/>
-      <link id="l0" source="r0" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l1" source="r1" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l2" source="r0" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l3" source="r1" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l4" source="r3" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l5" source="r4" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l6" source="r5" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l10" source="r6" destination="r2" orientation="UNDIRECTED"/>
-      <link id="l7" source="r3" destination="r4" orientation="UNDIRECTED"/>
-      <link id="l8" source="r3" destination="r5" orientation="UNDIRECTED"/>
-      <link id="l9" source="r4" destination="r5" orientation="UNDIRECTED"/>
-      <link id="l11" source="r7" destination="r2" orientation="UNDIRECTED"/>
+      <resource id="Smart camera"/>
+      <resource id="User device 0"/>
+      <resource id="User device 1"/>
+      <resource id="User device 2"/>
+      <resource id="Router"/>
+      <resource id="Cloud resource 0"/>
+      <resource id="Cloud resource 1"/>
+      <resource id="Camera"/>
+      <link id="Bluetooth 0" source="User device 0" destination="User device 1" orientation="UNDIRECTED"/>
+      <link id="Bluetooth 1" source="User device 0" destination="User device 2" orientation="UNDIRECTED"/>
+      <link id="Ethernet 0" source="Camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 4" source="User device 2" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 3" source="User device 1" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 0" source="Camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 2" source="User device 0" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Ethernet 1" source="Smart camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Wifi 1" source="Smart camera" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Internet 0" source="Cloud resource 0" destination="Router" orientation="UNDIRECTED"/>
+      <link id="Bluetooth 2" source="User device 1" destination="User device 2" orientation="UNDIRECTED"/>
+      <link id="Internet 1" source="Cloud resource 1" destination="Router" orientation="UNDIRECTED"/>
     </routing>
   </routings>
 </specification>
