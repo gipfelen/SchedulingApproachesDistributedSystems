@@ -19,10 +19,10 @@ public final class ShopMonitoringSpecification {
 	private static final boolean VISUALIZE_SPECIFICATION = true;
 	// Set this to true to create the specification using the SpecificationGenerator
 	// (otherwise the specification is read from the specified file)
-	private static final boolean CREATE_SPEC_FROM_CODE = true;
+	private static final boolean CREATE_SPEC_FROM_CODE = false;
 	// Set this to true if the created specification should be saved to the 
 	// specified location.
-	private static final boolean SAVE_SPEC_TO_FILE = true;
+	private static final boolean SAVE_SPEC_TO_FILE = false;
 	// The path to the spec folder (TODO: you may have to adjust this if you work on
 	// Windows)
 	private static final String SPEC_FOLDER_PATH = "./specs/";
