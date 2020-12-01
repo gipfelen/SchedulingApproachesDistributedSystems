@@ -1,5 +1,6 @@
 package at.uibk.dps.dsB.task2.part2.evaluation;
 
+import at.uibk.dps.dsB.task2.part2.properties.PropertyService;
 import org.opt4j.core.Objective;
 import org.opt4j.core.Objectives;
 
@@ -37,7 +38,27 @@ public class CostEvaluator implements ImplementationEvaluator {
 	 * @return the cost of the implementation
 	 */
 	protected double calculateImplementationCost(Specification implementation) {
-		throw new IllegalStateException("Cost Calculation not yet implemented.");
+		var totalCost = 0d;
+
+		for(var resource : implementation.getArchitecture()){
+			if(PropertyService.isCloudResource(resource)){
+				double cost = PropertyService.getResourceCosts(resource);
+				double accumulatedUsageTime = resource.getAttribute(TimingEvaluator.accumulatedUsageAttribute);
+				totalCost += cost * accumulatedUsageTime;
+			} else {
+				double cost = PropertyService.getResourceCosts(resource);
+
+				totalCost += cost;
+			}
+		}
+
+		for(var link : implementation.getArchitecture().getEdges()){
+			double cost = PropertyService.getLinkCost(link);
+
+			totalCost += cost;
+		}
+
+		return totalCost;
 	}
 
 	@Override
