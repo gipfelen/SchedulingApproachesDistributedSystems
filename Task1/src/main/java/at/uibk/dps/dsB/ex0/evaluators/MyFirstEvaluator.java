@@ -1,5 +1,8 @@
 package at.uibk.dps.dsB.ex0.evaluators;
 
+import at.uibk.dps.dsB.ex0.MyFirstProblem;
+import com.google.inject.Inject;
+import edu.uci.ics.jung.graph.util.Pair;
 import org.opt4j.core.Objective;
 import org.opt4j.core.Objective.Sign;
 import org.opt4j.core.Objectives;
@@ -13,17 +16,27 @@ import org.opt4j.core.problem.Evaluator;
  * @author Fedor Smirnov
  *
  */
-public class MyFirstEvaluator implements Evaluator<Object> {
+public class MyFirstEvaluator implements Evaluator<Pair<Integer>> {
 
-	protected final Objective myObjective = new Objective("Objective to maximize", Sign.MAX);
+	protected final Objective myObjective = new Objective("Objective to maximize", Sign.MIN);
+
+	protected final MyFirstProblem problem;
+	@Inject
+	public MyFirstEvaluator(MyFirstProblem problem) {
+		this.problem = problem;
+	}
 
 	@Override
-	public Objectives evaluate(Object phenotype) {
-		// No need to do anything in this method
-		double fitness = calculatePhenotypeFitness(phenotype);
-		Objectives result = new Objectives();
-		result.add(myObjective, fitness);
-		return result;
+	public Objectives evaluate(Pair<Integer> value) {
+		var totalValue = value.getFirst();
+		var dif = totalValue - problem.getTargetValue();
+		dif = dif > 0 ? dif : - dif;
+
+		//penalty for more coins
+		dif += value.getSecond() * problem.getPenaltyPerCoinUsed();
+		Objectives objectives = new Objectives();
+		objectives.add("objective", Sign.MIN, dif);
+		return objectives;
 	}
 
 	/**

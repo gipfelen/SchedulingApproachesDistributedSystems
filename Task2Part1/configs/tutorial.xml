@@ -1,4 +1,14 @@
 <configuration>
+  <module class="net.sf.opendse.optimization.OptimizationModule">
+    <property name="routingEncoding">FLOW</property>
+    <property name="stagnationRestartEnabled">true</property>
+    <property name="maximalNumberStagnatingGenerations">20</property>
+    <property name="usePreprocessing">true</property>
+    <property name="useVariableOrder">true</property>
+  </module>
+  <module class="net.sf.opendse.optimization.io.InputModule">
+    <property name="filename">specs/Specification1.xml</property>
+  </module>
   <module class="org.opt4j.optimizers.ea.EvolutionaryAlgorithmModule">
     <property name="generations">1000</property>
     <property name="populationSize">100</property>
@@ -6,14 +16,6 @@
     <property name="offspringsPerGeneration">25</property>
     <property name="crossoverRate">0.95</property>
   </module>
-  <module class="at.uibk.dps.dsB.ex0.modules.MyFirstProblemModule">
-    <property name="numberCoins">20</property>
-    <property name="targetValue">255</property>
-    <property name="penaltyPerCoinUsed">1</property>
-
-  </module>
-
-  <!--  <module class="at.uibk.dps.dsB.ex0.modules.SalesmanModule"/>-->
   <module class="org.opt4j.viewer.ViewerModule">
     <property name="closeEvent">STOP</property>
     <property name="closeOnStop">false</property>

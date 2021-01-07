@@ -1,7 +1,11 @@
 package at.uibk.dps.dsB.ex0.creators;
 
-import org.opt4j.core.Genotype;
+import at.uibk.dps.dsB.ex0.MyFirstProblem;
+import com.google.inject.Inject;
+import org.opt4j.core.genotype.SelectGenotype;
 import org.opt4j.core.problem.Creator;
+
+import java.util.Random;
 
 /**
  * The {@link Creator} class which will be used to initialize the genotypes
@@ -10,12 +14,22 @@ import org.opt4j.core.problem.Creator;
  * @author Fedor Smirnov
  *
  */
-public class MyFirstCreator implements Creator<Genotype> {
+public class MyFirstCreator implements Creator<SelectGenotype<Integer>> {
+
+	Integer[] Coins = { 200, 100, 50, 20, 10, 5, 2, 1, 0};
+	Random random = new Random();
+
+	protected final MyFirstProblem problem;
+	@Inject
+	public MyFirstCreator(MyFirstProblem problem) {
+		this.problem = problem;
+	}
 
 	@Override
-	public Genotype create() {
-		// TODO Implement a method initializing the genotypes.
-		throw new IllegalArgumentException("Creation of genotypes not yet implemented.");
+	public SelectGenotype<Integer> create() {
+		SelectGenotype<Integer> genotype = new SelectGenotype<>(Coins);
+		genotype.init(random, problem.getNumberCoins());
+		return genotype;
 	}
 
 }

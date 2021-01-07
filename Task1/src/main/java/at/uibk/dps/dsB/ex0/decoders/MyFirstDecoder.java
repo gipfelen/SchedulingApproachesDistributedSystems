@@ -1,6 +1,8 @@
 package at.uibk.dps.dsB.ex0.decoders;
 
+import edu.uci.ics.jung.graph.util.Pair;
 import org.opt4j.core.Genotype;
+import org.opt4j.core.genotype.SelectGenotype;
 import org.opt4j.core.problem.Decoder;
 
 /**
@@ -10,12 +12,18 @@ import org.opt4j.core.problem.Decoder;
  * @author Fedor Smirnov
  *
  */
-public class MyFirstDecoder implements Decoder<Genotype, Object> {
+public class MyFirstDecoder implements Decoder<SelectGenotype<Integer>, Pair<Integer>> {
 
 	@Override
-	public Object decode(Genotype genotype) {
-		// TODO Implement a method which transforms a given genotype into the phenotype,
-		// i.e., a representation which can be processed by the evalutor.
-		throw new IllegalArgumentException("Decoding not yet implemented.");
+	public Pair<Integer> decode(SelectGenotype<Integer> genotype) {
+		Integer total = 0;
+		Integer numberCoins = 0;
+		for (int i = 0; i < genotype.size(); i++) {
+			total += genotype.getValue(i);
+			if (genotype.getValue(i) != 0) {
+				numberCoins++;
+			}
+		}
+		return new Pair<>(total,numberCoins);
 	}
 }
