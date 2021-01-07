@@ -145,9 +145,14 @@ public class TimingEvaluator implements ImplementationEvaluator {
 		double endTime = startTimes.get(currentTask) + timeCurrentTask;
 		endTimes.put(currentTask, endTime);
 
+		currentTask.setAttribute("End time", endTime);
+		
 		// Set the end time as the start time for all successors
 		for (Task successor : appl.getSuccessors(currentTask)) {
-			startTimes.put(successor, endTime);
+			
+			// FEDOR: missing check whether the end times of all predecessors of the task have already been calculated 
+			startTimes.put(successor, endTime);	
+			successor.setAttribute("Start time", endTime);
 			endTimes = calculateEndTime(implementation, successor, startTimes, endTimes);
 		}
 
